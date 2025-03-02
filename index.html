@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Photobooth</title>
+    <!-- Sweetalert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <style>
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            background-color: #2c2c2c;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .login-container h1 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #ff6f61;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #3d3d3d;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .login-container input::placeholder {
+            color: #a0a0a0;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6f61;
+            color: #ffffff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container button:hover {
+            background-color: #ff4a3d;
+        }
+
+        .login-container .forgot-password {
+            display: block;
+            margin-top: 1rem;
+            color: #a0a0a0;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .login-container .forgot-password:hover {
+            color: #ffffff;
+        }
+
+        .login-container .signup-link {
+            margin-top: 1.5rem;
+            color: #a0a0a0;
+            font-size: 0.875rem;
+        }
+
+        .login-container .signup-link a {
+            color: #ff6f61;
+            text-decoration: none;
+        }
+
+        .login-container .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animasi */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .login-container {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Photobooth Login</h1>
+        <form id="loginForm">
+            <input type="text" id="username" placeholder="Username" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <a href="#" class="forgot-password">Lupa Password?</a>
+        <p class="signup-link">Belum punya akun? <a href="#">Daftar disini</a></p>
+    </div>
+
+    <!-- Sweetalert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // JavaScript untuk interaktivitas dengan Sweetalert2
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Validasi username dan password
+            if (username === 'admin' && password === 'admin') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Berhasil!',
+                    text: 'Anda akan diarahkan ke halaman dashboard.',
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(() => {
+                    // Redirect ke halaman dashboard setelah 2 detik
+                    window.location.href = 'home2.html';
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Username atau password salah!',
+                });
+            }
+        });
+
+        // Contoh untuk tombol "Lupa Password?"
+        document.querySelector('.forgot-password').addEventListener('click', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'info',
+                title: 'Lupa Password?',
+                text: 'Silakan hubungi admin untuk reset password.',
+            });
+        });
+
+        // Contoh untuk tombol "Daftar disini"
+        document.querySelector('.signup-link a').addEventListener('click', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                icon: 'info',
+                title: 'Daftar Akun',
+                text: 'Silakan hubungi admin untuk membuat akun baru.',
+            });
+        });
+    </script>
+</body>
+</html>
